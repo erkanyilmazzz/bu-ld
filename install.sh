@@ -1,4 +1,4 @@
-    
+  
 #!/bin/sh
 #Erkan Yılmaz
 #date 11/02/2020
@@ -30,7 +30,7 @@ install_req(){
 
 #run a docker container(jenkins 2.60.3) in port 8080  
 run_jenkins(){
-    read -p "please enter a jenkins_home path" JENKINS_HOME_PATH
+    JENKINS_HOME_PATH="/home/erkan/jenkins_home"
     echo "path is $JENKINS_HOME_PATH"
     mkdir -p $JENKINS_HOME_PATH
     sudo docker pull  jenkins:2.60.3
@@ -42,7 +42,7 @@ run_jenkins(){
 
 run_vagrant(){
 
-    read -p "please enter a path for vagrant freebsd" FREEBSD_PATH
+    FREEBSD_PATH="/home/erkan/vagrant_freebsd"
     echo "vagrant path is $FREEBSD_PATH"
 
 
@@ -67,4 +67,6 @@ run_vagrant(){
 
 install_req
 run_jenkins
+run_vagrant
+
 run_vagrant
