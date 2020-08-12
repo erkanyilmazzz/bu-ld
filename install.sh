@@ -1,24 +1,24 @@
-
 #!/bin/sh
 #Erkan Yılmaz
 #date 11/02/2020
 
 FREEBSD_PATH="/home/erkan/freebsd"
-JENKINS_HOME_PATH="/home/erkan/volume"
+JENKINS_HOME_PATH="/home/erkan/mythirtdeneme"
 
 ##########################################
 echo "instalation is starting"
-apt-get install -y docker.io                #need for jenkins
+sudo apt-get install -y docker.io                #need for jenkins
 echo "docker instaled"
-apt-get install -y virtualbox               #need for vagrant
+sudo apt-get install -y virtualbox               #need for vagrant
 echo "virtual box instaled"
-apt-get install -y vagrant                  #need for freebsd machine
+sudo apt-get install -y vagrant                  #need for freebsd machine
 echo "vagrant  instaled"
 ############################################
                                             #this part can be change
-apt-get install -y git                      #need for vagrantfile from git_repo
+sudo apt-get install -y git                      #need for vagrantfile from git_repo
 echo "git instaled"
-mkdir -p $FREEBSD_PATH
+#mkdir -p $FREEBSD_PATH
+mkdir $FREEBSD_PATH
 cd $FREEBSD_PATH
 
 GIT_PATH="http://stash.logo.com.tr/projects/SGT/repos/build-staj/browse/vagrant_config/Vagrantfile?at=refs%2Fheads%2Fbranc_build_staj"
@@ -34,7 +34,12 @@ fi
 cd /
 mkdir -p $JENKINS_HOME_PATH
 sudo docker pull  jenkins:2.60.3
-sudo  chown 1000 $JENKISN_HOME_PATH/
+#sudo  chown 1000 $JENKISN_HOME_PATH/
 sudo docker run -p 8080:8080 -p 50000:50000 -v $JENKINS_HOME_PATH:/var/jenkins_home -d  jenkins:2.60.3
 
-cat $JENKINS_HOME_PATH/secrets/initialAdminPassword
+echo "you can find pasword in $JENKINS_HOME_PATH/secrets/initialAdminPassword"
+#sudo docker run -p 8080:8080 -p 50000:50000 -v /home/erkan/deneme/:/var/jenkins_home jenkins:2.60.3
+
+
+
+
