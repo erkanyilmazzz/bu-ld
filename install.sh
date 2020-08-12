@@ -8,23 +8,14 @@
 install_req(){
 
     echo "instalation is starting"
-    sudo apt-get install -y docker.io || 
-    { echo "error occurred while installing docker"; exit 1; }
-    && echo "docker instaled"
+    sudo apt-get install -y docker.io || { echo "error occurred while installing docker"; exit 1; }
     
-    sudo apt-get install -y virtualbox || 
-    { echo "error occurred while installing docker"; exit 1; }
-    && echo "docker instaled"
+    sudo apt-get install -y virtualbox || { echo "error occurred while installing virtualbox"; exit 1; }
     
-    sudo apt-get install -y vagrant  || 
-    { echo "error occurred while installing docker"; exit 1; }
-    && echo "docker instaled"
-    
-    sudo apt-get install -y git || 
-    { echo "error occurred while installing docker"; exit 1; }
-    && echo "docker instaled"
-    
+    sudo apt-get install -y vagrant  || { echo "error occurred while installing vagrant "; exit 1; }
 
+    sudo apt-get install -y git || { echo "error occurred while installing git"; exit 1; }
+    
 }
 
 
@@ -53,20 +44,12 @@ run_vagrant(){
     #####asldında bunun yerine ssh kullanarak da servera indirebiliriz
     GIT_PATH="http://stash.logo.com.tr/projects/SGT/repos/build-staj/browse/vagrant_config/Vagrantfile?at=refs%2Fheads%2Fbranc_build_staj"
 
-    if [0 !=$(git clone $GIT_PATH)]
-        then
-            echo "cant find vagrant file check your vpn or githup repo"
-            exit -1
-        else
-            echo "vagrant file cloned"
-    fi
-
+    git clone $GIT_PATH ||{echo "cant clone";exit 1;}
+    
     vagrant up
 
 }
 
 install_req
 run_jenkins
-run_vagrant
-
 run_vagrant
